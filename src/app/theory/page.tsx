@@ -1,0 +1,83 @@
+import { TheoryHeader } from "@/components/theory/theory-header";
+import { TheoryFilters } from "@/components/theory/theory-filters";
+import { TheoryList } from "@/components/theory/theory-list";
+import { TheoryCard } from "@/components/theory/theory-card";
+import { Pagination } from "@/components/lessons/pagination";
+
+export default function TheoryPage() {
+  const theories = [
+    {
+      id: 1,
+      title: "Introducere în Grafuri",
+      description:
+        "Definiții de bază, tipuri de grafuri (orientate, neorientate), reprezentarea grafurilor (matrice de adiacență, liste de adiacență).",
+      category: "Grafuri",
+      categoryColor:
+        "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50",
+      difficulty: "Începător" as const,
+      difficultyColor:
+        "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50",
+      duration: "15 min",
+      status: "read" as const,
+    },
+    {
+      id: 2,
+      title: "Parcurgerea în Lățime (BFS)",
+      description:
+        "Algoritmul BFS explicat pas cu pas. Coada (Queue), complexitate, aplicații (drum minim în grafuri neponderate).",
+      category: "Algoritmi",
+      categoryColor:
+        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
+      difficulty: "Intermediar" as const,
+      difficultyColor:
+        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
+      duration: "20 min",
+      status: "unread" as const,
+    },
+    {
+      id: 3,
+      title: "Parcurgerea în Adâncime (DFS)",
+      description:
+        "Algoritmul DFS, implementare recursivă și iterativă (stivă). Componente conexe, sortare topologică.",
+      category: "Algoritmi",
+      categoryColor:
+        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
+      difficulty: "Intermediar" as const,
+      difficultyColor:
+        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
+      duration: "25 min",
+      status: "unread" as const,
+    },
+    {
+      id: 4,
+      title: "Arbori și Arbori Binari",
+      description:
+        "Definiția arborilor, terminologie (rădăcină, frunze, înălțime). Arbori binari de căutare (BST).",
+      category: "Structuri de date",
+      categoryColor:
+        "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50",
+      difficulty: "Intermediar" as const,
+      difficultyColor:
+        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
+      duration: "30 min",
+      status: "unread" as const,
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-navy-deep pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-12 relative overflow-hidden">
+        <TheoryHeader />
+        <TheoryFilters />
+        <TheoryList>
+          {theories.map((theory) => (
+            <TheoryCard key={theory.id} {...theory} />
+          ))}
+        </TheoryList>
+        <div className="mt-12 flex justify-center">
+          <Pagination />
+        </div>
+      </div>
+    </div>
+  );
+}
