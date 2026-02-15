@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function Navbar() {
   return (
@@ -62,9 +63,60 @@ export function Navbar() {
             </Link>
           </div>
           <div className="md:hidden flex items-center gap-4">
-            <button className="text-gray-600 dark:text-gray-300 hover:text-primary">
-              <span className="material-icons-round text-3xl">menu</span>
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className="text-gray-600 dark:text-gray-300 hover:text-primary">
+                  <span className="material-icons-round text-3xl">menu</span>
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col gap-4 mt-8">
+                  <Link
+                    href="/"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Acasă
+                  </Link>
+                  <Link
+                    href="/lessons"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Lecții
+                  </Link>
+                  <Link
+                    href="/theory"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Teorie
+                  </Link>
+                  <Link
+                    href="/exercises"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Exerciții
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Teste BAC
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Contact
+                  </Link>
+                  <hr className="my-2 border-gray-200 dark:border-white/10" />
+                  <Link
+                    href="/login"
+                    className="bg-primary hover:bg-orange-600 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-orange-500/30 text-center"
+                  >
+                    Intră în cont
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
