@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function LessonHeader() {
   return (
-    <div className="bg-white dark:bg-navy-surface py-12 border-b border-gray-200 dark:border-gray-800 relative overflow-hidden">
+    <div className="bg-white dark:bg-navy-surface pt-28 pb-12 border-b border-gray-200 dark:border-gray-800 relative overflow-hidden">
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-indigo-500/5 rounded-full blur-3xl"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

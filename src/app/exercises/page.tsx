@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { ExercisesHeader } from "@/components/exercises/exercises-header";
 import { ExercisesFilters } from "@/components/exercises/exercises-filters";
 import { ExercisesList } from "@/components/exercises/exercises-list";
@@ -71,8 +74,15 @@ export default function ExercisesPage() {
         <ExercisesHeader />
         <ExercisesFilters />
         <ExercisesList>
-          {exercises.map((exercise) => (
-            <ExerciseCard key={exercise.id} {...exercise} />
+          {exercises.map((exercise, index) => (
+            <motion.div
+              key={exercise.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <ExerciseCard {...exercise} />
+            </motion.div>
           ))}
         </ExercisesList>
         <div className="mt-12 flex justify-center">
