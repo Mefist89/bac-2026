@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Hero() {
   return (
     <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white dark:bg-navy-deep">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-blue-900/20 to-transparent dark:from-blue-900/40 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-bl from-blue-900/20 to-transparent dark:from-blue-900/40 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -17,7 +17,7 @@ export function Hero() {
             </div>
             <h1 className="text-5xl lg:text-6xl font-display font-extrabold text-gray-900 dark:text-white leading-tight mb-6">
               Pregătește-te pentru <br />
-              <span className="bg-gradient-to-r from-primary to-orange-400 gradient-text text-transparent bg-clip-text">
+              <span className="bg-linear-to-r from-primary to-orange-400 gradient-text text-transparent bg-clip-text">
                 BAC-ul la Informatică
               </span>
             </h1>
@@ -62,7 +62,7 @@ export function Hero() {
             </div>
           </div>
           <div className="relative lg:h-[600px] flex items-center justify-center">
-            <div className="absolute w-[110%] h-[110%] bg-gradient-to-tr from-surface-dark to-transparent rounded-full border border-white/10 opacity-20 animate-pulse"></div>
+            <div className="absolute w-[110%] h-[110%] bg-linear-to-tr from-surface-dark to-transparent rounded-full border border-white/10 opacity-20 animate-pulse"></div>
             <div className="relative z-10 w-full max-w-lg">
               <div
                 className="absolute -top-10 -right-10 bg-white dark:bg-navy-surface p-4 rounded-2xl shadow-xl border border-gray-100 dark:border-white/10 animate-bounce"
@@ -93,8 +93,8 @@ export function Hero() {
                   <span className="font-bold text-lg">Everyday</span>
                 </div>
                 <p className="text-sm opacity-90 italic">
-                  "Ever tried. Ever failed. No matter. Try again. Fail again.
-                  Fail better."
+                  &quot;Ever tried. Ever failed. No matter. Try again. Fail
+                  again. Fail better.&quot;
                 </p>
               </div>
             </div>

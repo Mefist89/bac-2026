@@ -38,8 +38,7 @@ export const metadata: Metadata = {
 
 import SessionProvider from "@/providers/session-provider";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-
+import { FooterWrapper } from "@/components/layout/footer-wrapper";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 export default function RootLayout({
@@ -76,7 +75,7 @@ export default function RootLayout({
           <SessionProvider>
             <Navbar />
             <main>{children}</main>
-            <Footer />
+            <FooterWrapper />
           </SessionProvider>
         </ThemeProvider>
       </body>

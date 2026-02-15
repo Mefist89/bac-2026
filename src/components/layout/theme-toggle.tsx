@@ -5,6 +5,24 @@ import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Toggle theme"
+      >
+        <span className="material-icons-round text-gray-600 dark:text-gray-300">
+          dark_mode
+        </span>
+      </button>
+    );
+  }
 
   return (
     <button

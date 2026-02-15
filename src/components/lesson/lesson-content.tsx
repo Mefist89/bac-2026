@@ -200,7 +200,7 @@ export function LessonContent() {
               <pre>
                 <code>
                   <span className="code-comment">
-                    // Citirea matricei de adiacență din fișier
+                    {"// Citirea matricei de adiacență din fișier"}
                   </span>
                   {"\n"}
                   <span className="code-keyword">#include</span>{" "}
@@ -218,14 +218,14 @@ export function LessonContent() {
                   <span className="code-function">main</span>() {"{"}
                   {"\n"}
                   {"    "}ifstream f(
-                  <span className="code-string">"graf.in"</span>
+                  <span className="code-string">&quot;graf.in&quot;</span>
                   );{"\n"}
                   {"    "}f &gt;&gt; n;{"\n"}
                   {"    "}
                   <span className="code-type">int</span> x, y;{"\n"}
                   {"    "}
                   <span className="code-comment">
-                    // Citim perechi de muchii (x, y)
+                    {"// Citim perechi de muchii (x, y)"}
                   </span>
                   {"\n"}
                   {"    "}
@@ -236,14 +236,14 @@ export function LessonContent() {
                   {"\n"}
                   {"        "}a[y][x] = <span className="code-number">1</span>;{" "}
                   <span className="code-comment">
-                    // Graful este neorientat
+                    {"// Graful este neorientat"}
                   </span>
                   {"\n"}
                   {"    "}
                   {"}"}
                   {"\n"}
                   {"    "}
-                  <span className="code-comment">// Afișare matrice</span>
+                  <span className="code-comment">{"// Afișare matrice"}</span>
                   {"\n"}
                   {"    "}
                   <span className="code-keyword">for</span>(
@@ -256,7 +256,7 @@ export function LessonContent() {
                   <span className="code-number">1</span>; j &lt;= n; j++)
                   {"\n"}
                   {"            "}cout &lt;&lt; a[i][j] &lt;&lt;{" "}
-                  <span className="code-string">" "</span>;{"\n"}
+                  <span className="code-string">&quot; &quot;</span>;{"\n"}
                   {"        "}cout &lt;&lt; endl;{"\n"}
                   {"    "}
                   {"}"}

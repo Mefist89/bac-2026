@@ -52,7 +52,23 @@ export function BlogSection() {
   );
 }
 
-function ArticleCard({ image, tag, tagColor, date, title, description }: any) {
+interface ArticleCardProps {
+  image: string;
+  tag: string;
+  tagColor: string;
+  date: string;
+  title: string;
+  description: string;
+}
+
+function ArticleCard({
+  image,
+  tag,
+  tagColor,
+  date,
+  title,
+  description,
+}: ArticleCardProps) {
   const bgMap: Record<string, string> = {
     primary: "bg-primary",
     blue: "bg-blue-600",
