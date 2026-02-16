@@ -1,6 +1,140 @@
 {
   "tests": [
     {
+      "id": 1,
+      "title": "Test: Introducere în Grafuri",
+      "timeLimit": "20:00",
+      "questions": [
+        {
+          "id": 101,
+          "text": "Care este definiția unui graf neorientat?",
+          "subtext": "Alegeți varianta corectă",
+          "type": "single_choice",
+          "data": {
+            "options": [
+              {
+                "id": "a",
+                "text": "O pereche ordonată de mulțimi G=(V,E), unde E este o mulțime de perechi neordonate de elemente din V",
+                "isCorrect": true
+              },
+              {
+                "id": "b",
+                "text": "O mulțime de puncte unite prin linii orientate",
+                "isCorrect": false
+              },
+              {
+                "id": "c",
+                "text": "O structură de date liniară",
+                "isCorrect": false
+              },
+              {
+                "id": "d",
+                "text": "Un arbore cu rădăcină",
+                "isCorrect": false
+              }
+            ]
+          }
+        },
+        {
+          "id": 102,
+          "text": "Ce reprezintă gradul unui nod într-un graf neorientat?",
+          "subtext": "Scrieți răspunsul (de exemplu: numărul de muchii incidente)",
+          "type": "match_value",
+          "data": {
+            "placeholder": "Număr întreg",
+            "items": [
+              {
+                "id": "q102_a",
+                "label": "Gradul nodului izolat este:",
+                "correctValue": "0"
+              },
+              {
+                "id": "q102_b",
+                "label": "Suma gradelor este întotdeauna un număr:",
+                "correctValue": "par"
+              }
+            ]
+          }
+        },
+        {
+          "id": 103,
+          "text": "Care dintre următoarele este proprietatea unui graf complet cu n noduri?",
+          "subtext": "Alegeți formula corectă pentru numărul de muchii",
+          "type": "single_choice",
+          "data": {
+            "options": [
+              {
+                "id": "a",
+                "text": "n(n-1)/2",
+                "isCorrect": true
+              },
+              {
+                "id": "b",
+                "text": "n^2",
+                "isCorrect": false
+              },
+              {
+                "id": "c",
+                "text": "2n",
+                "isCorrect": false
+              },
+              {
+                "id": "d",
+                "text": "n-1",
+                "isCorrect": false
+              }
+            ]
+          }
+        },
+        {
+          "id": 104,
+          "text": "Asociați termenii cu definițiile lor",
+          "subtext": "Potriviți corect",
+          "type": "match_value",
+          "data": {
+            "placeholder": "termen",
+            "items": [
+              {
+                "id": "q104_a",
+                "label": "Drum elementar",
+                "correctValue": "noduri distincte"
+              },
+              {
+                "id": "q104_b",
+                "label": "Ciclu",
+                "correctValue": "inceput=sfarsit"
+              },
+              {
+                "id": "q104_c",
+                "label": "Graf conex",
+                "correctValue": "drum intre oricare 2 noduri"
+              }
+            ]
+          }
+        },
+        {
+          "id": 105,
+          "text": "Un graf cu 5 noduri și 4 muchii este neapărat arbore?",
+          "subtext": "Adevărat sau Fals",
+          "type": "single_choice",
+          "data": {
+            "options": [
+              {
+                "id": "a",
+                "text": "Fals (trebuie să fie și conex)",
+                "isCorrect": true
+              },
+              {
+                "id": "b",
+                "text": "Adevărat",
+                "isCorrect": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "id": 2,
       "title": "Test: Tipuri de Date Simple",
       "timeLimit": "30:00",
@@ -13,12 +147,36 @@
           "data": {
             "placeholder": "int, float, char sau bool",
             "items": [
-              { "id": "q1_a", "label": "15.25", "correctValue": "float" },
-              { "id": "q1_b", "label": "260", "correctValue": "int" },
-              { "id": "q1_c", "label": "-2.01", "correctValue": "float" },
-              { "id": "q1_d", "label": "true", "correctValue": "bool" },
-              { "id": "q1_e", "label": "'+'", "correctValue": "char" },
-              { "id": "q1_f", "label": "1.10", "correctValue": "float" }
+              {
+                "id": "q1_a",
+                "label": "15.25",
+                "correctValue": "float"
+              },
+              {
+                "id": "q1_b",
+                "label": "260",
+                "correctValue": "int"
+              },
+              {
+                "id": "q1_c",
+                "label": "-2.01",
+                "correctValue": "float"
+              },
+              {
+                "id": "q1_d",
+                "label": "true",
+                "correctValue": "bool"
+              },
+              {
+                "id": "q1_e",
+                "label": "'+'",
+                "correctValue": "char"
+              },
+              {
+                "id": "q1_f",
+                "label": "1.10",
+                "correctValue": "float"
+              }
             ]
           }
         },
@@ -30,12 +188,36 @@
           "data": {
             "placeholder": "int, float, char, bool",
             "items": [
-              { "id": "q2_a", "label": "42", "correctValue": "int" },
-              { "id": "q2_b", "label": "3.14", "correctValue": "float" },
-              { "id": "q2_c", "label": "-17", "correctValue": "int" },
-              { "id": "q2_d", "label": "false", "correctValue": "bool" },
-              { "id": "q2_e", "label": "'x'", "correctValue": "char" },
-              { "id": "q2_f", "label": "0.5", "correctValue": "float" }
+              {
+                "id": "q2_a",
+                "label": "42",
+                "correctValue": "int"
+              },
+              {
+                "id": "q2_b",
+                "label": "3.14",
+                "correctValue": "float"
+              },
+              {
+                "id": "q2_c",
+                "label": "-17",
+                "correctValue": "int"
+              },
+              {
+                "id": "q2_d",
+                "label": "false",
+                "correctValue": "bool"
+              },
+              {
+                "id": "q2_e",
+                "label": "'x'",
+                "correctValue": "char"
+              },
+              {
+                "id": "q2_f",
+                "label": "0.5",
+                "correctValue": "float"
+              }
             ]
           }
         },
@@ -47,12 +229,36 @@
           "data": {
             "placeholder": "int, float, char, bool",
             "items": [
-              { "id": "q3_a", "label": "0", "correctValue": "int" },
-              { "id": "q3_b", "label": "'9'", "correctValue": "char" },
-              { "id": "q3_c", "label": "true", "correctValue": "bool" },
-              { "id": "q3_d", "label": "-0.001", "correctValue": "float" },
-              { "id": "q3_e", "label": "100", "correctValue": "int" },
-              { "id": "q3_f", "label": "2.5", "correctValue": "float" }
+              {
+                "id": "q3_a",
+                "label": "0",
+                "correctValue": "int"
+              },
+              {
+                "id": "q3_b",
+                "label": "'9'",
+                "correctValue": "char"
+              },
+              {
+                "id": "q3_c",
+                "label": "true",
+                "correctValue": "bool"
+              },
+              {
+                "id": "q3_d",
+                "label": "-0.001",
+                "correctValue": "float"
+              },
+              {
+                "id": "q3_e",
+                "label": "100",
+                "correctValue": "int"
+              },
+              {
+                "id": "q3_f",
+                "label": "2.5",
+                "correctValue": "float"
+              }
             ]
           }
         }

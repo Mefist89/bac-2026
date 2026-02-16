@@ -324,7 +324,7 @@ export function LessonTypesContent() {
                 </div>
               </Button>
             </a>
-            <a href="#" className="no-underline">
+            <a href="/test-online/2" className="no-underline">
               <Button
                 variant="outline"
                 className="h-auto py-3 px-4 flex items-center gap-3 w-full sm:w-auto hover:border-primary hover:text-primary transition-colors bg-gray-50 dark:bg-navy-deep"

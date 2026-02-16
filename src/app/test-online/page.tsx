@@ -22,16 +22,16 @@ export default function TestOnlinePage() {
     },
     {
       id: 2,
-      title: "Simulare BAC 2024 (Model)",
+      title: "Test: Tipuri de Date Simple",
       description:
-        "Test complet de 3 ore, structurat conform modelului oficial de Bacalaureat. Include toate cele 3 subiecte.",
-      category: "Simulări",
+        "Întrebări despre tipurile de date fundamentale în C++ (int, float, char, bool), conversii și reprezentare.",
+      category: "Limbajul C++",
       categoryColor:
-        "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50",
-      difficulty: "Avansat" as const,
+        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
+      difficulty: "Ușor" as const,
       difficultyColor:
-        "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-200 dark:border-red-700/50",
-      questionsCount: 30,
+        "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50",
+      questionsCount: 3,
       status: "not_started" as const,
     },
     {
