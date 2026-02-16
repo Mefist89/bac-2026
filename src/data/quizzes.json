@@ -1,0 +1,62 @@
+{
+  "tests": [
+    {
+      "id": 2,
+      "title": "Test: Tipuri de Date Simple",
+      "timeLimit": "30:00",
+      "questions": [
+        {
+          "id": 1,
+          "text": "Precizați tipul de date a următoarelor variabile",
+          "subtext": "Introduceți tipul corect de date pentru fiecare valoare (int, float, char, bool)",
+          "type": "match_value",
+          "data": {
+            "placeholder": "int, float, char sau bool",
+            "items": [
+              { "id": "q1_a", "label": "15.25", "correctValue": "float" },
+              { "id": "q1_b", "label": "260", "correctValue": "int" },
+              { "id": "q1_c", "label": "-2.01", "correctValue": "float" },
+              { "id": "q1_d", "label": "true", "correctValue": "bool" },
+              { "id": "q1_e", "label": "'+'", "correctValue": "char" },
+              { "id": "q1_f", "label": "1.10", "correctValue": "float" }
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "text": "Precizați tipul de date a următoarelor valori (Varianta 2)",
+          "subtext": "Introduceți tipul corect de date (int, float, char, bool)",
+          "type": "match_value",
+          "data": {
+            "placeholder": "int, float, char, bool",
+            "items": [
+              { "id": "q2_a", "label": "42", "correctValue": "int" },
+              { "id": "q2_b", "label": "3.14", "correctValue": "float" },
+              { "id": "q2_c", "label": "-17", "correctValue": "int" },
+              { "id": "q2_d", "label": "false", "correctValue": "bool" },
+              { "id": "q2_e", "label": "'x'", "correctValue": "char" },
+              { "id": "q2_f", "label": "0.5", "correctValue": "float" }
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "text": "Precizați tipul de date a următoarelor valori (Varianta 3)",
+          "subtext": "Introduceți tipul corect de date (int, float, char, bool)",
+          "type": "match_value",
+          "data": {
+            "placeholder": "int, float, char, bool",
+            "items": [
+              { "id": "q3_a", "label": "0", "correctValue": "int" },
+              { "id": "q3_b", "label": "'9'", "correctValue": "char" },
+              { "id": "q3_c", "label": "true", "correctValue": "bool" },
+              { "id": "q3_d", "label": "-0.001", "correctValue": "float" },
+              { "id": "q3_e", "label": "100", "correctValue": "int" },
+              { "id": "q3_f", "label": "2.5", "correctValue": "float" }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

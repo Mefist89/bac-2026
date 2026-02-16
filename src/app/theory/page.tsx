@@ -8,30 +8,30 @@ export default function TheoryPage() {
   const theories = [
     {
       id: 1,
-      title: "Introducere în Grafuri",
+      title: "Cantitatea de informație",
       description:
-        "Definiții de bază, tipuri de grafuri (orientate, neorientate), reprezentarea grafurilor (matrice de adiacență, liste de adiacență).",
-      category: "Grafuri",
+        "Sinteză despre sistemul de transmisie a informației, formulele lui Hartley, codificare și discretizare.",
+      category: "Fundamente",
       categoryColor:
-        "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50",
+        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
       difficulty: "Începător" as const,
       difficultyColor:
         "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50",
-      duration: "15 min",
+      duration: "30 min",
       status: "read" as const,
     },
     {
       id: 2,
-      title: "Parcurgerea în Lățime (BFS)",
+      title: "Tipuri de Date în C++",
       description:
-        "Algoritmul BFS explicat pas cu pas. Coada (Queue), complexitate, aplicații (drum minim în grafuri neponderate).",
-      category: "Algoritmi",
+        "Află totul despre tipurile de date fundamentale în C++: int, float, char, bool și modificatori.",
+      category: "C++",
       categoryColor:
-        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
-      difficulty: "Intermediar" as const,
+        "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700/50",
+      difficulty: "Începător" as const,
       difficultyColor:
-        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
-      duration: "20 min",
+        "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50",
+      duration: "30 min",
       status: "unread" as const,
     },
     {

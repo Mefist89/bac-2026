@@ -1,0 +1,98 @@
+{
+  "sections": [
+    {
+      "title": "1. Sistemul general de transmisie a informației",
+      "icon": "router",
+      "color": "blue",
+      "content": "Informația circulă de la o **sursă** către un **destinatar** prin intermediul unui mediu fizic numit **canal de transmisie**.\n\n- **Sursa** este descrisă printr-o variabilă care ia valori dintr-o mulțime finită de mesaje posibile.\n- **Mesajele** sunt transmise prin canalul de comunicație, unde pot apărea **perturbații** (zgomote) ce pot altera conținutul acestora.\n- Valoarea mesajului devine cunoscută destinatarului doar după recepționarea acestuia."
+    },
+    {
+      "title": "2. Determinarea cantității de informație",
+      "icon": "functions",
+      "color": "indigo",
+      "content": "Cantitatea de informație conținută într-un mesaj emis de o sursă se calculează în funcție de numărul de mesaje posibile.",
+      "formulas": [
+        {
+          "label": "Formula generală (Hartley)",
+          "latex": "I = \\log_a n"
+        },
+        {
+          "label": "Volumul total de informație",
+          "latex": "V = N \\cdot I"
+        }
+      ]
+    },
+    {
+      "title": "3. Codificarea și decodificarea informației",
+      "icon": "qr_code",
+      "color": "purple",
+      "content": "Procesul de transformare a mesajelor în cuvinte (șiruri de semne) se numește **codificare**, iar operația inversă este **decodificarea**.\n\n- **Alfabetul binar:** Este format din două semne, reprezentate de obicei prin cifrele $0, 1$.\n- **Cuvântul binar:** Reprezintă un șir finit de $m$ semne binare, unde $m$ este lungimea cuvântului.\n- **Condiția de decodificare univocă:** Pentru ca fiecare mesaj să aibă un cod distinct, lungimea codului trebuie să satisfacă inegalitatea:",
+      "formulas": [
+        {
+          "label": "Inegalitatea lungimii codului",
+          "latex": "2^m \\ge n \\implies m \\ge \\log_2 n"
+        }
+      ]
+    },
+    {
+      "title": "4. Informatizarea imaginilor și a sunetului",
+      "icon": "image",
+      "color": "pink",
+      "content": "Pentru a evalua informația din mesaje continue (imagini, sunet), acestea trebuie discretizate în spațiu, timp sau valoare.\n\n**Imaginea monocromă și color**\nImaginea este descompusă în **pixeli** (microzone) cu ajutorul unui **rastru** de dimensiuni $m_x \\times m_y$.",
+      "formulas": [
+        {
+          "label": "Imagine monocromă",
+          "latex": "I = m_x \\cdot m_y \\cdot \\log_2 n"
+        },
+        {
+          "label": "Note",
+          "latex": "\\text{unde } n \\text{ este numărul de niveluri de luminanță (cuante).}"
+        },
+        {
+          "label": "Imagine color (RGB)",
+          "latex": "I = 3 \\cdot m_x \\cdot m_y \\cdot \\log_2 n"
+        }
+      ]
+    },
+    {
+      "title": "5. Secvențe video",
+      "icon": "movie",
+      "color": "red",
+      "content": "Imaginile în mișcare se discretizează în timp prin cadre pe secundă (frecvența $f$).",
+      "formulas": [
+        {
+          "label": "Volumul video",
+          "latex": "V = T \\cdot f \\cdot I"
+        },
+        {
+          "label": "Note",
+          "latex": "\\text{unde } I \\text{ este informația dintr-un singur cadru.}"
+        }
+      ]
+    },
+    {
+      "title": "6. Unități de măsură și multipli",
+      "icon": "sd_storage",
+      "color": "green",
+      "content": "Pe lângă bit, se utilizează **octetul** (byte), definit ca fiind format din 8 biți.",
+      "formulas": [
+        {
+          "label": "Byte",
+          "latex": "1 \\text{ Byte} = 8 \\text{ bits}"
+        },
+        {
+          "label": "Kilobyte (KB)",
+          "latex": "1 \\text{ KB} = 1024 \\text{ Bytes} = 2^{10} \\text{ Bytes}"
+        },
+        {
+          "label": "Megabyte (MB)",
+          "latex": "1 \\text{ MB} = 1024 \\text{ KB} = 2^{20} \\text{ Bytes}"
+        },
+        {
+          "label": "Gigabyte (GB)",
+          "latex": "1 \\text{ GB} = 1024 \\text{ MB} = 2^{30} \\text{ Bytes}"
+        }
+      ]
+    }
+  ]
+}

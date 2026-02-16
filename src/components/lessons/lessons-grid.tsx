@@ -4,32 +4,32 @@ import { LessonCard } from "./lesson-card";
 const LESSONS = [
   {
     id: 1,
-    title: "Divizibilitate și Primaritate",
+    title: "Cantitatea de informație",
     description:
-      "Învață cum să verifici dacă un număr este prim, descompunerea în factori primi și cel mai mare divizor comun.",
+      "Sinteză despre sistemul de transmisie a informației, formulele lui Hartley, codificare și discretizare.",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCyPNO1CbXPranoEMdPv9Ym_K9LWFk-nNj8Dj73_9m9Fo-Y4GQVjatdHVrVau4Aran2k43zgRyPDfgudPTE174QK2ccQIoEIdd3qo3kXm7V0N2gY9EOhPilQhkpcZZ6p2u2Iiwefdjr5sSrcGuSxwCM8JYNDlJwyZKylOrPXXJHv3rLSV5ufwVvOtxZLLI0ZoWurIkYFaBJMjWy76Ax8LZ3lJbxB8jupZPD2VJP1WcytexGBkMCUc6KXOP0t-_pD_UPRb9NsrP3mXcJ",
-    category: "Algoritmi",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCyPNO1CbXPranoEMdPv9Ym_K9LWFk-nNj8Dj73_9m9Fo-Y4GQVjatdHVrVau4Aran2k43zgRyPDfgudPTE174QK2ccQIoEIdd3qo3kXm7V0N2gY9EOhPilQhkpcZZ6p2u2Iiwefdjr5sSrcGuSxwCM8JYNDlJwyZKylOrPXXJHv3rLSV5ufwVvOtxZLLI0ZoWurIkYFaBJMjWy76Ax8LZ3lJbxB8jupZPD2VJP1WcytexGBkMCUc6KXOP0t-_pD_UPRb9NsrP3mXcJ", // Keep existing or update if possible
+    category: "Fundamente",
     categoryColor: "text-blue-600",
     difficulty: "Ușor" as const,
     difficultyColor: "bg-green-500",
-    duration: "45 min",
+    duration: "30 min",
     grade: "Clasa a IX-a",
     isPremium: false,
   },
   {
     id: 2,
-    title: "Metode de Sortare",
+    title: "Tipuri de Date în C++",
     description:
-      "Bubble Sort, Selection Sort și Insertion Sort explicate pas cu pas. Analiza complexității.",
+      "Află totul despre tipurile de date fundamentale în C++: int, float, char, bool și modificatori.",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuA_2GIzjZ6VxsoSJbUfo38WHmnp0paPQT4I1l-Nbx_g40yb5Rys24kY3plStXv19IqXSVQlPRy3GOHnQvvklcmrIBnbWCysBTG9sMX7JexzKn30RapfrKb_penjuoJgHECYYjNpIwJgoOr0R21JUWMAbeJqzWxK-Phrv2AkyGG7Xw4MNx8P6vl-O9m7-wg44_bPTmec685Btfls3bQ8b2pqpAm7FnN1M-PpQn0w0L9NOFtjR7BRUo2zNIw8N7OH3UFjKpV5KW7zCae5",
-    category: "Sortare",
-    categoryColor: "text-purple-600",
-    difficulty: "Mediu" as const,
-    difficultyColor: "bg-yellow-500",
-    duration: "60 min",
-    grade: "Clasa a X-a",
+    category: "C++",
+    categoryColor: "text-indigo-600",
+    difficulty: "Ușor" as const,
+    difficultyColor: "bg-green-500",
+    duration: "30 min",
+    grade: "Clasa a IX-a",
     isPremium: false,
   },
   {

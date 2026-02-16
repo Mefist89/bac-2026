@@ -41,6 +41,12 @@ export function Navbar() {
               Exerciții
             </Link>
             <Link
+              href="/test-online"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
+            >
+              Test Online
+            </Link>
+            <Link
               href="#"
               className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
             >
@@ -51,6 +57,13 @@ export function Navbar() {
               className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
             >
               Contact
+            </Link>
+            <Link
+              href="https://notebooklm.google.com/notebook/cbc559cb-4eb6-47ed-be2f-1416fb7f05c4"
+              target="_blank"
+              className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
+            >
+              Ajutor AI
             </Link>
           </div>
           <div className="hidden md:flex items-center gap-4">
@@ -96,6 +109,12 @@ export function Navbar() {
                     Exerciții
                   </Link>
                   <Link
+                    href="/test-online"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Test Online
+                  </Link>
+                  <Link
                     href="#"
                     className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                   >
@@ -106,6 +125,13 @@ export function Navbar() {
                     className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                   >
                     Contact
+                  </Link>
+                  <Link
+                    href="https://notebooklm.google.com/notebook/cbc559cb-4eb6-47ed-be2f-1416fb7f05c4"
+                    target="_blank"
+                    className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                  >
+                    Ajutor AI
                   </Link>
                   <hr className="my-2 border-gray-200 dark:border-white/10" />
                   <Link
