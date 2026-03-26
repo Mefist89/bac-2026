@@ -1,6 +1,20 @@
+import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/auth/login-form";
+import { hasSupabaseEnv } from "@/lib/supabase/config";
+import { createClient } from "@/lib/supabase/server";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  if (hasSupabaseEnv()) {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (user) {
+      redirect("/");
+    }
+  }
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen w-full font-display">
       {/* Hero Section (Left) */}

@@ -7,8 +7,9 @@ export function FooterWrapper() {
   const pathname = usePathname();
   const isExercisePage = pathname?.startsWith("/exercises/");
   const isLessonPage = pathname?.startsWith("/lessons/");
+  const isLoginPage = pathname === "/login";
 
-  if (isExercisePage || isLessonPage) {
+  if (isExercisePage || isLessonPage || isLoginPage) {
     return null;
   }
 

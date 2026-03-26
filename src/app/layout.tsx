@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit, Inter, Lexend } from "next/font/google";
 import "./globals.css";
+import { FooterWrapper } from "@/components/layout/footer-wrapper";
+import { NavbarWrapper } from "@/components/layout/navbar-wrapper";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,11 +39,6 @@ export const metadata: Metadata = {
     "Platforma ta completă pentru pregătirea examenului de Bacalaureat la Informatică.",
 };
 
-import SessionProvider from "@/providers/session-provider";
-import { Navbar } from "@/components/layout/navbar";
-import { FooterWrapper } from "@/components/layout/footer-wrapper";
-import { ThemeProvider } from "@/providers/theme-provider";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -72,11 +70,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SessionProvider>
-            <Navbar />
-            <main>{children}</main>
-            <FooterWrapper />
-          </SessionProvider>
+          <NavbarWrapper />
+          <main>{children}</main>
+          <FooterWrapper />
         </ThemeProvider>
       </body>
     </html>
