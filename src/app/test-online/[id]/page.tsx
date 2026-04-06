@@ -8,6 +8,7 @@ import { TestRunnerFooter } from "@/components/test-runner/test-runner-footer";
 import { QuestionCard, Question } from "@/components/test-runner/question-card";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
+import { StatusSelector } from "@/components/ui/status-selector";
 import quizzesData from "@/data/quizzes.json";
 
 export default function TestRunnerPage() {
@@ -183,6 +184,8 @@ export default function TestRunnerPage() {
           isFirstQuestion={currentQuestionIndex === 0}
           isLastQuestion={currentQuestionIndex === totalQuestions - 1}
         />
+
+        <StatusSelector itemType="test" itemId={testId} />
       </main>
 
       {/* Result Modal */}

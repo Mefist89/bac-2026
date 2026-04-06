@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { StatusDisplay } from "@/components/ui/status-display";
 
 interface LessonCardProps {
   id: number;

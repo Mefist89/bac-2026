@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { StatusDisplay } from "@/components/ui/status-display";
 
 interface TheoryCardProps {
   id: number | string; // Allow string IDs for slugs if needed
@@ -70,19 +71,7 @@ export function TheoryCard({
             <span className="text-xs text-gray-500 dark:text-gray-500 uppercase font-bold tracking-wider mb-1">
               Status
             </span>
-            <div
-              className={cn(
-                "flex items-center gap-1.5",
-                status === "read" ? "text-green-500" : "text-gray-400",
-              )}
-            >
-              <span className="material-icons-outlined text-lg">
-                {status === "read" ? "check_circle" : "radio_button_unchecked"}
-              </span>
-              <span className="text-sm font-bold">
-                {status === "read" ? "Parcurs" : "Neînceput"}
-              </span>
-            </div>
+            <StatusDisplay itemType="lesson" itemId={id} />
           </div>
 
           <Link

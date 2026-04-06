@@ -2,6 +2,7 @@ import { LessonHeader } from "@/components/lesson/lesson-header";
 import { LessonSidebar } from "@/components/lesson/lesson-sidebar";
 import { LessonContent } from "@/components/lesson/lesson-content";
 import { LessonNavigation } from "@/components/lesson/lesson-navigation";
+import { StatusSelector } from "@/components/ui/status-selector";
 import fs from "fs";
 import path from "path";
 
@@ -104,6 +105,7 @@ export default async function LessonDetailsPage({ params }: PageProps) {
               prevLessonId={lessonId > 1 ? lessonId - 1 : undefined}
               nextLessonId={lessonId < 2 ? lessonId + 1 : undefined}
             />
+            <StatusSelector itemType="lesson" itemId={lessonId} />
           </div>
           {/* Don't show resources in sidebar for lesson 1 since they are now at the bottom */}
           <LessonSidebar resources={lessonId === 1 ? [] : resources} />

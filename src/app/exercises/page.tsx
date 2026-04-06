@@ -6,6 +6,7 @@ import { ExercisesFilters } from "@/components/exercises/exercises-filters";
 import { ExercisesList } from "@/components/exercises/exercises-list";
 import { ExerciseCard } from "@/components/exercises/exercise-card";
 import { Pagination } from "@/components/lessons/pagination";
+import { StatusSelector } from "@/components/ui/status-selector";
 
 export default function ExercisesPage() {
   const exercises = [

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import type { User } from "@supabase/supabase-js";
 
@@ -7,80 +8,74 @@ interface ProfileContentProps {
   user: User | null;
 }
 
-/* ── Mock stats for demonstration ── */
-const MOCK_STATS = {
-  lessonsCompleted: 2,
-  totalLessons: 6,
-  exercisesSolved: 14,
-  testsTaken: 3,
-  averageScore: 78,
-  streak: 5,
+interface ProgressItem {
+  item_type: "lesson" | "exercise" | "test";
+  item_id: number;
+  status: "not_started" | "in_progress" | "completed";
+  updated_at: string;
+}
+
+/* ── Item name maps ── */
+const LESSON_NAMES: Record<number, string> = {
+  1: "Cantitatea de informație",
+  2: "Tipuri de Date",
 };
 
-const RECENT_ACTIVITY = [
-  {
-    icon: "menu_book",
-    title: "Cantitatea de informație",
-    subtitle: "Lecția 1 parcursă",
-    time: "acum 2 ore",
-    color: "text-blue-500 bg-blue-50 dark:bg-blue-900/20",
-  },
-  {
-    icon: "quiz",
-    title: "Test Online #1",
-    subtitle: "Scor: 85%",
-    time: "acum 1 zi",
-    color: "text-green-500 bg-green-50 dark:bg-green-900/20",
-  },
-  {
-    icon: "code",
-    title: "Exercițiu: Variabile",
-    subtitle: "Rezolvat cu succes",
-    time: "acum 2 zile",
-    color: "text-purple-500 bg-purple-50 dark:bg-purple-900/20",
-  },
-  {
-    icon: "menu_book",
-    title: "Tipuri de Date în C++",
-    subtitle: "Lecția 2 parcursă",
-    time: "acum 3 zile",
-    color: "text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20",
-  },
-];
+const EXERCISE_NAMES: Record<number, string> = {
+  1: "Suma elementelor pare",
+  2: "Parcurgere Spirală",
+  3: "Drumul Minim (Dijkstra)",
+  4: "Vocale și Consoane",
+};
+
+const TEST_NAMES: Record<number, string> = {
+  1: "Test: Bazele Informaticii",
+  2: "Test: Tipuri de Date Simple",
+};
+
+const STATUS_MAP: Record<string, string> = {
+  completed: "Parcurs",
+  in_progress: "În lucru",
+  not_started: "Neînceput",
+};
 
 const ACHIEVEMENTS = [
   {
     icon: "local_fire_department",
     title: "Prima Lecție",
     description: "Ai parcurs prima lecție",
-    unlocked: true,
+    key: "first_lesson",
     color: "from-orange-400 to-red-500",
   },
   {
     icon: "emoji_events",
     title: "Test Perfect",
     description: "Scor de 100% la un test",
-    unlocked: false,
+    key: "perfect_test",
     color: "from-yellow-400 to-amber-500",
   },
   {
     icon: "bolt",
     title: "Serie de 7 zile",
     description: "Activitate 7 zile la rând",
-    unlocked: false,
+    key: "streak_7",
     color: "from-blue-400 to-cyan-500",
   },
   {
     icon: "school",
     title: "Toate Lecțiile",
     description: "Parcurge toate lecțiile",
-    unlocked: false,
+    key: "all_lessons",
     color: "from-green-400 to-emerald-500",
   },
 ];
 
 export function ProfileContent({ user }: ProfileContentProps) {
-  const displayName = user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Elev";
+  const [progress, setProgress] = useState<ProgressItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const displayName =
+    user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Elev";
   const email = user?.email || "elev@bacinfo.ro";
   const avatar = user?.user_metadata?.avatar_url;
   const joinDate = user?.created_at
@@ -90,9 +85,95 @@ export function ProfileContent({ user }: ProfileContentProps) {
       })
     : "Februarie 2026";
 
-  const progressPercent = Math.round(
-    (MOCK_STATS.lessonsCompleted / MOCK_STATS.totalLessons) * 100
-  );
+  useEffect(() => {
+    async function fetchProgress() {
+      try {
+        const res = await fetch("/api/progress");
+        if (res.ok) {
+          const data = await res.json();
+          setProgress(data.progress || []);
+        }
+      } catch {
+        // silently fail
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProgress();
+  }, []);
+
+  // Compute stats from real data
+  const lessonsCompleted = progress.filter(
+    (p) => p.item_type === "lesson" && p.status === "completed"
+  ).length;
+  const lessonsInProgress = progress.filter(
+    (p) => p.item_type === "lesson" && p.status === "in_progress"
+  ).length;
+  const totalLessons = 2;
+  const exercisesSolved = progress.filter(
+    (p) => p.item_type === "exercise" && p.status === "completed"
+  ).length;
+  const exercisesInProgress = progress.filter(
+    (p) => p.item_type === "exercise" && p.status === "in_progress"
+  ).length;
+  const testsTaken = progress.filter(
+    (p) => p.item_type === "test" && p.status === "completed"
+  ).length;
+  const testsInProgress = progress.filter(
+    (p) => p.item_type === "test" && p.status === "in_progress"
+  ).length;
+
+  const totalActivities = lessonsCompleted + exercisesSolved + testsTaken;
+  const progressPercent = Math.round((lessonsCompleted / totalLessons) * 100);
+
+  // Build recent activity from real data (sorted by updated_at)
+  const recentActivity = [...progress]
+    .sort(
+      (a, b) =>
+        new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+    )
+    .slice(0, 5)
+    .map((p) => {
+      const nameMap =
+        p.item_type === "lesson"
+          ? LESSON_NAMES
+          : p.item_type === "exercise"
+            ? EXERCISE_NAMES
+            : TEST_NAMES;
+      const iconMap = {
+        lesson: "menu_book",
+        exercise: "code",
+        test: "quiz",
+      };
+      const colorMap = {
+        lesson: "text-blue-500 bg-blue-50 dark:bg-blue-900/20",
+        exercise: "text-purple-500 bg-purple-50 dark:bg-purple-900/20",
+        test: "text-green-500 bg-green-50 dark:bg-green-900/20",
+      };
+
+      const timeDiff = Date.now() - new Date(p.updated_at).getTime();
+      const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+      const days = Math.floor(hours / 24);
+      let timeLabel = "acum";
+      if (days > 0) timeLabel = `acum ${days} ${days === 1 ? "zi" : "zile"}`;
+      else if (hours > 0)
+        timeLabel = `acum ${hours} ${hours === 1 ? "oră" : "ore"}`;
+
+      return {
+        icon: iconMap[p.item_type],
+        title: nameMap[p.item_id] || `${p.item_type} #${p.item_id}`,
+        subtitle: STATUS_MAP[p.status] || p.status,
+        time: timeLabel,
+        color: colorMap[p.item_type],
+      };
+    });
+
+  // Compute achievements
+  const unlockedAchievements = new Set<string>();
+  if (lessonsCompleted >= 1) unlockedAchievements.add("first_lesson");
+  if (lessonsCompleted >= totalLessons)
+    unlockedAchievements.add("all_lessons");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
@@ -160,37 +241,37 @@ export function ProfileContent({ user }: ProfileContentProps) {
         <StatCard
           icon="menu_book"
           label="Lecții parcurse"
-          value={`${MOCK_STATS.lessonsCompleted}/${MOCK_STATS.totalLessons}`}
+          value={`${lessonsCompleted}/${totalLessons}`}
           color="text-blue-500 bg-blue-50 dark:bg-blue-900/20"
+        />
+        <StatCard
+          icon="hourglass_top"
+          label="Lecții în lucru"
+          value={lessonsInProgress.toString()}
+          color="text-amber-500 bg-amber-50 dark:bg-amber-900/20"
         />
         <StatCard
           icon="code"
           label="Exerciții rezolvate"
-          value={MOCK_STATS.exercisesSolved.toString()}
+          value={exercisesSolved.toString()}
           color="text-purple-500 bg-purple-50 dark:bg-purple-900/20"
         />
         <StatCard
+          icon="build"
+          label="Exerciții în lucru"
+          value={exercisesInProgress.toString()}
+          color="text-orange-500 bg-orange-50 dark:bg-orange-900/20"
+        />
+        <StatCard
           icon="quiz"
-          label="Teste date"
-          value={MOCK_STATS.testsTaken.toString()}
+          label="Teste parcurse"
+          value={testsTaken.toString()}
           color="text-green-500 bg-green-50 dark:bg-green-900/20"
         />
         <StatCard
-          icon="analytics"
-          label="Scor mediu"
-          value={`${MOCK_STATS.averageScore}%`}
-          color="text-amber-500 bg-amber-50 dark:bg-amber-900/20"
-        />
-        <StatCard
-          icon="local_fire_department"
-          label="Serie curentă"
-          value={`${MOCK_STATS.streak} zile`}
-          color="text-red-500 bg-red-50 dark:bg-red-900/20"
-        />
-        <StatCard
           icon="trending_up"
-          label="Progres total"
-          value={`${progressPercent}%`}
+          label="Total activități"
+          value={totalActivities.toString()}
           color="text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
         />
       </div>
@@ -207,31 +288,88 @@ export function ProfileContent({ user }: ProfileContentProps) {
               Progresul meu
             </h2>
 
-            {/* Overall progress bar */}
-            <div className="mb-6">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Lecții parcurse
+            {loading ? (
+              <div className="flex items-center gap-3 text-gray-400">
+                <span className="material-icons-outlined animate-spin">
+                  sync
                 </span>
-                <span className="text-sm font-bold text-gray-900 dark:text-white">
-                  {MOCK_STATS.lessonsCompleted} / {MOCK_STATS.totalLessons}
-                </span>
+                Se încarcă progresul...
               </div>
-              <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-linear-to-r from-primary to-orange-400 rounded-full transition-all duration-500"
-                  style={{ width: `${progressPercent}%` }}
-                />
-              </div>
-            </div>
+            ) : (
+              <>
+                {/* Overall progress bar */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      Lecții parcurse
+                    </span>
+                    <span className="text-sm font-bold text-gray-900 dark:text-white">
+                      {lessonsCompleted} / {totalLessons}
+                    </span>
+                  </div>
+                  <div className="h-3 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-linear-to-r from-primary to-orange-400 rounded-full transition-all duration-500"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+                </div>
 
-            {/* Skill bars */}
-            <div className="space-y-4">
-              <SkillBar label="Fundamente" value={100} color="from-blue-500 to-cyan-400" />
-              <SkillBar label="C++" value={40} color="from-indigo-500 to-purple-400" />
-              <SkillBar label="Algoritmi" value={10} color="from-green-500 to-emerald-400" />
-              <SkillBar label="Structuri de date" value={0} color="from-amber-500 to-yellow-400" />
-            </div>
+                {/* Item-by-item breakdown */}
+                <div className="space-y-3">
+                  <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Detalii
+                  </h3>
+                  {progress.length === 0 ? (
+                    <p className="text-sm text-gray-400 dark:text-gray-500 italic">
+                      Nu ai niciun progres salvat încă. Începe cu prima lecție!
+                    </p>
+                  ) : (
+                    progress.map((p, idx) => {
+                      const nameMap =
+                        p.item_type === "lesson"
+                          ? LESSON_NAMES
+                          : p.item_type === "exercise"
+                            ? EXERCISE_NAMES
+                            : TEST_NAMES;
+                      const typeLabel =
+                        p.item_type === "lesson"
+                          ? "Lecție"
+                          : p.item_type === "exercise"
+                            ? "Exercițiu"
+                            : "Test";
+                      const statusColor =
+                        p.status === "completed"
+                          ? "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
+                          : p.status === "in_progress"
+                            ? "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20"
+                            : "text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800";
+                      return (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between p-3 rounded-xl border border-gray-100 dark:border-gray-800"
+                        >
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                              {nameMap[p.item_id] ||
+                                `${typeLabel} #${p.item_id}`}
+                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              {typeLabel}
+                            </p>
+                          </div>
+                          <span
+                            className={`text-xs font-bold px-3 py-1 rounded-full ${statusColor}`}
+                          >
+                            {STATUS_MAP[p.status]}
+                          </span>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Recent Activity */}
@@ -243,33 +381,46 @@ export function ProfileContent({ user }: ProfileContentProps) {
               Activitate recentă
             </h2>
 
-            <div className="space-y-1">
-              {RECENT_ACTIVITY.map((activity, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-                >
+            {loading ? (
+              <div className="flex items-center gap-3 text-gray-400">
+                <span className="material-icons-outlined animate-spin">
+                  sync
+                </span>
+                Se încarcă...
+              </div>
+            ) : recentActivity.length === 0 ? (
+              <p className="text-sm text-gray-400 dark:text-gray-500 italic">
+                Nicio activitate recentă.
+              </p>
+            ) : (
+              <div className="space-y-1">
+                {recentActivity.map((activity, idx) => (
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${activity.color}`}
+                    key={idx}
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                   >
-                    <span className="material-icons-outlined text-xl">
-                      {activity.icon}
+                    <div
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${activity.color}`}
+                    >
+                      <span className="material-icons-outlined text-xl">
+                        {activity.icon}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+                        {activity.title}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {activity.subtitle}
+                      </p>
+                    </div>
+                    <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">
+                      {activity.time}
                     </span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
-                      {activity.title}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {activity.subtitle}
-                    </p>
-                  </div>
-                  <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">
-                    {activity.time}
-                  </span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
               <Link
@@ -297,37 +448,40 @@ export function ProfileContent({ user }: ProfileContentProps) {
             </h2>
 
             <div className="space-y-3">
-              {ACHIEVEMENTS.map((achievement, idx) => (
-                <div
-                  key={idx}
-                  className={`flex items-center gap-4 p-3 rounded-xl border transition-all ${
-                    achievement.unlocked
-                      ? "border-amber-200 dark:border-amber-700/40 bg-amber-50/50 dark:bg-amber-900/10"
-                      : "border-gray-100 dark:border-gray-800 opacity-50 grayscale"
-                  }`}
-                >
+              {ACHIEVEMENTS.map((achievement, idx) => {
+                const unlocked = unlockedAchievements.has(achievement.key);
+                return (
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-linear-to-br ${achievement.color} text-white shadow-sm`}
+                    key={idx}
+                    className={`flex items-center gap-4 p-3 rounded-xl border transition-all ${
+                      unlocked
+                        ? "border-amber-200 dark:border-amber-700/40 bg-amber-50/50 dark:bg-amber-900/10"
+                        : "border-gray-100 dark:border-gray-800 opacity-50 grayscale"
+                    }`}
                   >
-                    <span className="material-icons-outlined text-xl">
-                      {achievement.icon}
-                    </span>
+                    <div
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-linear-to-br ${achievement.color} text-white shadow-sm`}
+                    >
+                      <span className="material-icons-outlined text-xl">
+                        {achievement.icon}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                        {achievement.title}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {achievement.description}
+                      </p>
+                    </div>
+                    {unlocked && (
+                      <span className="material-icons-outlined text-amber-500 text-xl">
+                        check_circle
+                      </span>
+                    )}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                      {achievement.title}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {achievement.description}
-                    </p>
-                  </div>
-                  {achievement.unlocked && (
-                    <span className="material-icons-outlined text-amber-500 text-xl">
-                      check_circle
-                    </span>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -351,13 +505,13 @@ export function ProfileContent({ user }: ProfileContentProps) {
                 href="/test-online"
                 icon="quiz"
                 label="Dă un test"
-                sublabel="3 teste disponibile"
+                sublabel="2 teste disponibile"
               />
               <QuickActionLink
                 href="/exercises"
                 icon="code"
                 label="Rezolvă exerciții"
-                sublabel="12 exerciții noi"
+                sublabel="4 exerciții disponibile"
               />
             </div>
           </div>
@@ -400,35 +554,6 @@ function StatCard({
       </div>
       <p className="text-xl font-bold text-gray-900 dark:text-white">{value}</p>
       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{label}</p>
-    </div>
-  );
-}
-
-function SkillBar({
-  label,
-  value,
-  color,
-}: {
-  label: string;
-  value: number;
-  color: string;
-}) {
-  return (
-    <div>
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-          {label}
-        </span>
-        <span className="text-xs font-bold text-gray-500 dark:text-gray-400">
-          {value}%
-        </span>
-      </div>
-      <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
-        <div
-          className={`h-full bg-linear-to-r ${color} rounded-full transition-all duration-700`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
     </div>
   );
 }

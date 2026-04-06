@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { StatusDisplay } from "@/components/ui/status-display";
 
 interface ExerciseCardProps {
   id: number;
@@ -76,34 +77,11 @@ export function ExerciseCard({
             </div>
           )}
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center min-w-[80px]">
             <span className="text-xs text-gray-500 dark:text-gray-500 uppercase font-bold tracking-wider mb-1">
               Status
             </span>
-            <div
-              className={`flex items-center gap-1.5 ${
-                status === "solved"
-                  ? "text-green-500"
-                  : status === "in-progress"
-                    ? "text-yellow-500"
-                    : "text-gray-400"
-              }`}
-            >
-              <span className="material-icons-outlined text-lg">
-                {status === "solved"
-                  ? "check_circle"
-                  : status === "in-progress"
-                    ? "pending"
-                    : "radio_button_unchecked"}
-              </span>
-              <span className="text-sm font-bold">
-                {status === "solved"
-                  ? "Rezolvat"
-                  : status === "in-progress"
-                    ? "În lucru"
-                    : "Neînceput"}
-              </span>
-            </div>
+            <StatusDisplay itemType="exercise" itemId={id} />
           </div>
 
           <Link
