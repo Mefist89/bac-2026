@@ -15,8 +15,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-              Platforma #1 pentru pregătirea examenului de Bacalaureat la
-              Informatică în România.
+              Platforma pentru pregătirea examenului de Bacalaureat la
+              Informatică în Moldova.
             </p>
             <div className="flex space-x-4">
               <Link
@@ -102,26 +102,26 @@ export function Footer() {
                 <span className="material-icons-round text-primary text-base mt-0.5">
                   location_on
                 </span>
-                <span>București, România</span>
+                <span>Chișinău, Moldova</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-round text-primary text-base">
                   phone
                 </span>
-                <span>+40 700 123 456</span>
+                <span>+373 78 00 00 00</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-round text-primary text-base">
                   email
                 </span>
-                <span>contact@bacinfo.ro</span>
+                <span>jeniabortnic@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
         <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-500 dark:text-gray-400 text-center md:text-left">
-            © 2024 BAC Info Prep. Toate drepturile rezervate.
+            © 2026 BAC Info Prep. Toate drepturile rezervate.
           </p>
           <div className="flex gap-6 text-sm text-gray-500 dark:text-gray-400">
             <Link
