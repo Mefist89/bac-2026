@@ -7,10 +7,11 @@ interface ExerciseCardProps {
   id: number;
   title: string;
   description: string;
-  category: string;
-  categoryColor: string; // e.g. "bg-purple-100 text-purple-800"
-  difficulty: "Ușor" | "Mediu" | "Greu";
-  difficultyColor: string; // e.g. "bg-blue-100 text-blue-800"
+  category?: string;
+  categoryColor?: string; // e.g. "bg-purple-100 text-purple-800"
+  difficulty?: "Ușor" | "Mediu" | "Greu" | string;
+  difficultyColor?: string; // e.g. "bg-blue-100 text-blue-800"
+  tags?: { text: string; color: string }[];
   points: number;
   status: "solved" | "in-progress" | "unstarted";
   hint?: string;
@@ -24,6 +25,7 @@ export function ExerciseCard({
   categoryColor,
   difficulty,
   difficultyColor,
+  tags,
   points,
   status,
   hint,
@@ -32,17 +34,30 @@ export function ExerciseCard({
     <div className="group relative bg-white dark:bg-navy-surface rounded-2xl p-6 border border-gray-200 dark:border-gray-800 hover:border-primary dark:hover:border-primary transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-primary/5">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex-1">
-          <div className="flex items-center gap-3 mb-2">
-            <span
-              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${categoryColor}`}
-            >
-              {category}
-            </span>
-            <span
-              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${difficultyColor}`}
-            >
-              {difficulty}
-            </span>
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            {tags ? (
+              tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${tag.color}`}
+                >
+                  {tag.text}
+                </span>
+              ))
+            ) : (
+              <>
+                {category && (
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${categoryColor}`}>
+                    {category}
+                  </span>
+                )}
+                {difficulty && (
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${difficultyColor}`}>
+                    {difficulty}
+                  </span>
+                )}
+              </>
+            )}
           </div>
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
             {title}

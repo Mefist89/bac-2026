@@ -12,17 +12,17 @@ export default function ExercisesPage() {
   const exercises = [
     {
       id: 1,
-      title: "Suma elementelor pare",
+      title: "Baze de date (MS Access)",
       description:
-        "Scrieți un program care citește de la tastatură un număr natural n și apoi n numere naturale. Programul trebuie să calculeze suma numerelor pare citite.",
-      category: "Vectori",
-      categoryColor:
-        "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50",
-      difficulty: "Ușor" as const,
-      difficultyColor:
-        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
-      points: 100,
-      status: "solved" as const,
+        "Subiectul III din testul de pretestare profil Uman. Include crearea tabelelor, stabilirea tipurilor de date, validarea câmpurilor și proiectarea unei interogări în MS Access.",
+      tags: [
+        { text: "Access", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50" },
+        { text: "2026", color: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50" },
+        { text: "Uman", color: "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50" },
+        { text: "Pretestare", color: "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50" }
+      ],
+      points: 25,
+      status: "in-progress" as const,
     },
     {
       id: 2,
