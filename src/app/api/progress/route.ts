@@ -60,7 +60,7 @@ export async function PUT(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { itemType, itemId, status } = body;
+  const { itemType, itemId, status, score, maxScore } = body;
 
   if (!itemType || !itemId || !status) {
     return NextResponse.json(
@@ -87,6 +87,8 @@ export async function PUT(request: NextRequest) {
         item_type: itemType,
         item_id: itemId,
         status,
+        score: score !== undefined ? score : null,
+        max_score: maxScore !== undefined ? maxScore : null,
         updated_at: new Date().toISOString(),
       },
       { onConflict: "user_id,item_type,item_id" }

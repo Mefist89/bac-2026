@@ -14,7 +14,7 @@ export default function ExercisesPage() {
       id: 1,
       title: "Baze de date (MS Access)",
       description:
-        "Subiectul III din testul de pretestare profil Uman. Include crearea tabelelor, stabilirea tipurilor de date, validarea câmpurilor și proiectarea unei interogări în MS Access.",
+        "Subiectul IV din testul de pretestare profil Uman. Include crearea tabelelor, stabilirea tipurilor de date, validarea câmpurilor și proiectarea unei interogări în MS Access.",
       tags: [
         { text: "Access", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50" },
         { text: "2026", color: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50" },
@@ -26,45 +26,44 @@ export default function ExercisesPage() {
     },
     {
       id: 2,
-      title: "Parcurgere Spirală",
+      title: "Baze de date (MS Access)",
       description:
-        "Se dă o matrice pătratică cu n linii și n coloane. Să se afișeze elementele matricei parcurgând-o în spirală, pornind din colțul stânga-sus.",
-      category: "Matrice",
-      categoryColor:
-        "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50",
-      difficulty: "Mediu" as const,
-      difficultyColor:
-        "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
-      points: 250,
-      status: "in-progress" as const,
-      hint: "Încearcă să folosești 4 variabile pentru marginile curente ale spiralei (sus, jos, stânga, dreapta).",
+        "Subiectul IV din testul de exersare profil Real. Include crearea tabelelor cu tipuri de date complexe, măști de intrare și interogări parametrizate.",
+      tags: [
+        { text: "Access", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50" },
+        { text: "2025", color: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50" },
+        { text: "Real", color: "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50" },
+        { text: "Exersare", color: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50" }
+      ],
+      points: 25,
+      status: "unstarted" as const,
     },
     {
       id: 3,
-      title: "Drumul Minim (Dijkstra)",
+      title: "Baze de date (MS Access)",
       description:
-        "Se dă un graf orientat ponderat conex. Determinați drumul de cost minim de la nodul de start S la toate celelalte noduri din graf.",
-      category: "Grafuri",
-      categoryColor:
-        "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-200 dark:border-red-700/50",
-      difficulty: "Greu" as const,
-      difficultyColor:
-        "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-200 dark:border-red-700/50",
-      points: 500,
+        "Subiectul IV din sesiunea de bază profil Uman. Concentrat pe gestionarea evenimentelor, chei străine, și validarea datelor introduse.",
+      tags: [
+        { text: "Access", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50" },
+        { text: "2024", color: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50" },
+        { text: "Uman", color: "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50" },
+        { text: "Bacalaureat", color: "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-200 dark:border-red-700/50" }
+      ],
+      points: 25,
       status: "unstarted" as const,
     },
     {
       id: 4,
-      title: "Vocale și Consoane",
+      title: "Baze de date (MS Access)",
       description:
-        "Se dă un text cu cel mult 100 de caractere. Să se determine numărul de vocale din text. Se consideră vocale literele a, e, i, o, u, atât mici cât și mari.",
-      category: "Șiruri de caractere",
-      categoryColor:
-        "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50",
-      difficulty: "Ușor" as const,
-      difficultyColor:
-        "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
-      points: 100,
+        "Subiectul IV din sesiunea de bacalaureat profil Real. Exercițiu complex ce combină mai multe tabele și interogări logice pentru obținerea seturilor de date.",
+      tags: [
+        { text: "Access", color: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50" },
+        { text: "2024", color: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 border-purple-200 dark:border-purple-700/50" },
+        { text: "Real", color: "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50" },
+        { text: "Sesiunea Suplimentară", color: "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-200 dark:border-green-700/50" }
+      ],
+      points: 25,
       status: "unstarted" as const,
     },
   ];

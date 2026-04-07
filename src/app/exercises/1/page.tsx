@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { ExerciseHeader } from "@/components/exercise/exercise-header";
 import { Button } from "@/components/ui/button";
 import { AccessTables } from "@/components/exercise/access-tables";
+import { StatusSelector } from "@/components/ui/status-selector";
 
 export default function AccessExercisePage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -210,6 +212,23 @@ export default function AccessExercisePage() {
     }
   }
 
+  // Effect to automatically save score to Supabase when "isSubmitted" becomes true
+  useEffect(() => {
+    if (isSubmitted) {
+      fetch("/api/progress", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          itemType: "exercise",
+          itemId: 1,
+          status: "completed",
+          score: correctCount,
+          maxScore: totalCount
+        }),
+      }).catch(err => console.error("Failed to save score:", err));
+    }
+  }, [isSubmitted, correctCount, totalCount]);
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background dark:bg-navy-deep font-display text-gray-900 dark:text-gray-100 selection:bg-primary/20">
       <ExerciseHeader />
@@ -217,12 +236,48 @@ export default function AccessExercisePage() {
       <main className="flex-1 flex overflow-hidden relative">
         <div className="flex-1 overflow-y-auto bg-gray-50/50 dark:bg-navy-deep relative custom-scrollbar">
           <div className="max-w-[1600px] w-full mx-auto px-6 py-8 lg:py-12 relative z-10">
-            {/* Subject Badge & Actions */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-              <span className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest bg-blue-50 dark:bg-blue-900/20 px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-800/50 self-start">
-                Subiectul IV. (25 de puncte)
-              </span>
-              <div className="flex items-center gap-3 flex-wrap justify-end">
+            {/* Top Control Bar */}
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-8 bg-white/50 dark:bg-navy-surface/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm flex-wrap">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 min-w-max">
+                {/* Pagination */}
+                <div className="flex bg-gray-100/80 dark:bg-navy-deep/80 p-1.5 rounded-full border border-gray-200 dark:border-white/5 relative">
+                   <button 
+                     onClick={() => setCurrentPage(1)}
+                     className={`relative z-10 px-5 py-2 rounded-full font-bold transition-all text-sm cursor-pointer ${currentPage === 1 ? 'text-white' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'}`}
+                   >
+                     {currentPage === 1 && (
+                       <motion.div
+                         layoutId="active-nav-pill"
+                         className="absolute inset-0 bg-primary rounded-full shadow-md"
+                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                         style={{ zIndex: -1 }}
+                       />
+                     )}
+                     Pagina 1
+                   </button>
+                   <button 
+                     onClick={() => setCurrentPage(2)}
+                     className={`relative z-10 px-5 py-2 rounded-full font-bold transition-all text-sm cursor-pointer ${currentPage === 2 ? 'text-white' : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'}`}
+                   >
+                     {currentPage === 2 && (
+                       <motion.div
+                         layoutId="active-nav-pill"
+                         className="absolute inset-0 bg-primary rounded-full shadow-md"
+                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                         style={{ zIndex: -1 }}
+                       />
+                     )}
+                     Pagina 2
+                   </button>
+                </div>
+
+                <div className="hidden sm:block w-px h-8 bg-gray-200 dark:bg-white/10"></div>
+
+                {/* Status */}
+                <StatusSelector itemType="exercise" itemId={1} variant="compact" forceStatus={isSubmitted ? "completed" : undefined} />
+              </div>
+
+              <div className="flex items-center gap-3 flex-wrap justify-end min-w-max">
                 {isSubmitted && (
                   <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-bold px-4 py-2 rounded-full border border-green-200 dark:border-green-800/50 mr-2 flex items-center gap-2">
                     <span className="material-icons-round text-sm">check_circle</span>
@@ -237,14 +292,17 @@ export default function AccessExercisePage() {
                 </Button>
                 <Button 
                   onClick={handleReset}
-                  className="rounded-full px-6 bg-blue-900 hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-700 text-white shadow-md transition-all hover:scale-105 active:scale-95"
+                  className="rounded-full px-6 bg-blue-900 hover:bg-blue-800 dark:bg-[#1e2a4a] dark:hover:bg-[#2a3b63] text-white shadow-md transition-all hover:scale-105 active:scale-95"
                 >
                   Resetare
                 </Button>
                 <Button 
                   onClick={() => setIsSubmitted(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 shadow-lg shadow-green-500/30 transition-all hover:scale-105 active:scale-95"
+                  className="relative bg-green-600 hover:bg-green-700 text-white rounded-full px-8 shadow-lg shadow-green-500/30 transition-all hover:scale-105 active:scale-95"
                 >
+                  {!isSubmitted && (
+                    <span className="absolute inset-0 rounded-full border-2 border-green-400 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50 pointer-events-none"></span>
+                  )}
                   Trimite
                 </Button>
               </div>
@@ -252,8 +310,13 @@ export default function AccessExercisePage() {
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12 items-start">
               {/* Left Column */}
-              <div className="flex flex-col gap-6 xl:sticky xl:top-0 h-fit max-h-full xl:max-h-[calc(100vh-100px)] xl:overflow-y-auto custom-scrollbar pr-2 pb-6">
+              <div className="flex flex-col gap-6 xl:sticky xl:top-0 h-fit max-h-full xl:max-h-[calc(100vh-100px)] xl:overflow-y-auto pr-2 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div>
+                  <div className="mb-4">
+                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest bg-blue-50 dark:bg-blue-900/20 px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-800/50">
+                      Subiectul IV. (25 de puncte)
+                    </span>
+                  </div>
                   <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">
                     Baze de Date: MS Access
                   </h1>
@@ -268,21 +331,7 @@ export default function AccessExercisePage() {
 
               {/* Right Column */}
               <div className="space-y-10 xl:pb-12 h-fit">
-                {/* Pagination */}
-                <div className="flex gap-2 border-b border-gray-200 dark:border-white/10 pb-4">
-                   <button 
-                     onClick={() => setCurrentPage(1)}
-                     className={`px-6 py-2 rounded-full font-bold transition-all border ${currentPage === 1 ? 'border-primary bg-primary/10 text-primary shadow-sm' : 'border-gray-200 dark:border-navy-deep/50 bg-gray-50/50 dark:bg-navy-surface text-gray-500 hover:bg-gray-100 dark:hover:bg-navy-deep'}`}
-                   >
-                     Pagina 1
-                   </button>
-                   <button 
-                     onClick={() => setCurrentPage(2)}
-                     className={`px-6 py-2 rounded-full font-bold transition-all border ${currentPage === 2 ? 'border-primary bg-primary/10 text-primary shadow-sm' : 'border-gray-200 dark:border-navy-deep/50 bg-gray-50/50 dark:bg-navy-surface text-gray-500 hover:bg-gray-100 dark:hover:bg-navy-deep'}`}
-                   >
-                     Pagina 2
-                   </button>
-                </div>
+                {/* Pagination & Status moved to top bar */}
 
                 <div className={currentPage === 1 ? 'space-y-10 block' : 'hidden'}>
                 {/* Task A */}

@@ -7,7 +7,8 @@ type ProgressStatus = "not_started" | "in_progress" | "completed";
 interface StatusSelectorProps {
   itemType: "lesson" | "exercise" | "test";
   itemId: number;
-  variant?: "default" | "inline";
+  variant?: "default" | "inline" | "compact";
+  forceStatus?: "not_started" | "in_progress" | "completed";
 }
 
 const STATUS_OPTIONS: {
@@ -39,10 +40,17 @@ const STATUS_OPTIONS: {
   },
 ];
 
-export function StatusSelector({ itemType, itemId, variant = "default" }: StatusSelectorProps) {
+export function StatusSelector({ itemType, itemId, variant = "default", forceStatus }: StatusSelectorProps) {
   const [status, setStatus] = useState<ProgressStatus>("not_started");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+
+  // Synchronize with external status overrides (e.g. hitting 'Submit' elsewhere on the page)
+  useEffect(() => {
+    if (forceStatus) {
+      setStatus(forceStatus);
+    }
+  }, [forceStatus]);
 
   // Fetch current status on mount
   useEffect(() => {
@@ -154,6 +162,27 @@ export function StatusSelector({ itemType, itemId, variant = "default" }: Status
 
   if (variant === "inline") {
     return buttonsContent;
+  }
+
+  if (variant === "compact") {
+    return (
+      <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
+          <span className="bg-primary/10 text-primary p-1.5 rounded-lg">
+            <span className="material-icons-outlined text-xl text-primary">bookmark</span>
+          </span>
+          <h3 className="text-base font-bold text-gray-900 dark:text-white font-display">
+            Status
+          </h3>
+          {saving && (
+            <span className="material-icons-outlined text-sm animate-spin text-gray-400">
+              sync
+            </span>
+          )}
+        </div>
+        {buttonsContent}
+      </div>
+    );
   }
 
   return (
