@@ -22,7 +22,7 @@ export default function TheoryPage() {
     },
     {
       id: 2,
-      title: "Tipuri de Date în C++",
+      title: "Tipuri de Date Simple în C++",
       description:
         "Află totul despre tipurile de date fundamentale în C++: int, float, char, bool și modificatori.",
       category: "C++",
@@ -36,10 +36,10 @@ export default function TheoryPage() {
     },
     {
       id: 3,
-      title: "Parcurgerea în Adâncime (DFS)",
+      title: "Tipuri de Date Structurate în C++",
       description:
-        "Algoritmul DFS, implementare recursivă și iterativă (stivă). Componente conexe, sortare topologică.",
-      category: "Algoritmi",
+        "Siruri de caractere (string), Structuri, Tablouri unidimensionale (vectori) si multidimensionale (matrice).",
+      category: "C++",
       categoryColor:
         "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-700/50",
       difficulty: "Intermediar" as const,
@@ -50,10 +50,10 @@ export default function TheoryPage() {
     },
     {
       id: 4,
-      title: "Arbori și Arbori Binari",
+      title: "Tipul expresiilor în C++. Conversii de tip în limbajul C++",
       description:
-        "Definiția arborilor, terminologie (rădăcină, frunze, înălțime). Arbori binari de căutare (BST).",
-      category: "Structuri de date",
+        "Tipul expresiilor în C++. Conversiile de tip în C++, conversii implicite și explicite.",
+      category: "C++",
       categoryColor:
         "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-200 dark:border-orange-700/50",
       difficulty: "Intermediar" as const,

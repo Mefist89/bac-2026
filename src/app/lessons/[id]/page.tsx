@@ -74,6 +74,22 @@ export default async function LessonDetailsPage({ params }: PageProps) {
       level: "Ușor",
       duration: "30 min",
     };
+  } else if (lessonId === 3) {
+    lessonData = {
+      title: "Tipuri de Date Structurate în C++",
+      description:
+        "Siruri de caractere (string), Structuri, Tablouri unidimensionale (vectori) si multidimensionale (matrice).",
+      level: "Intermediar",
+      duration: "25 min",
+    };
+  } else if (lessonId === 4) {
+    lessonData = {
+      title: "Tipul expresiilor în C++. Conversii de tip",
+      description:
+        "Tipul expresiilor în C++. Conversiile de tip în C++, conversii implicite și explicite.",
+      level: "Intermediar",
+      duration: "30 min",
+    };
   } else {
     lessonData = {
       title: "Grafuri și Aplicații",
@@ -103,7 +119,7 @@ export default async function LessonDetailsPage({ params }: PageProps) {
             />
             <LessonNavigation
               prevLessonId={lessonId > 1 ? lessonId - 1 : undefined}
-              nextLessonId={lessonId < 2 ? lessonId + 1 : undefined}
+              nextLessonId={lessonId < 4 ? lessonId + 1 : undefined}
             />
             <StatusSelector itemType="lesson" itemId={lessonId} />
           </div>

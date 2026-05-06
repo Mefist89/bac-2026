@@ -1,5 +1,7 @@
 import { LessonGraphContent } from "@/components/lesson/lesson-graph-content";
 import { LessonTypesContent } from "@/components/lesson/lesson-types-content";
+import { LessonStructuredTypesContent } from "@/components/lesson/lesson-structured-types-content";
+import { LessonExpressionsContent } from "@/components/lesson/lesson-expressions-content";
 import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 import { LessonBlockContent } from "@/components/lesson/lesson-block-content";
 
@@ -26,6 +28,14 @@ export function LessonContent({
 
   if (lessonId === 2) {
     return <LessonTypesContent />;
+  }
+
+  if (lessonId === 3) {
+    return <LessonStructuredTypesContent />;
+  }
+
+  if (lessonId === 4) {
+    return <LessonExpressionsContent />;
   }
 
   // Default to Graph content (ID 1) - Wait, ID 1 is the new lesson?

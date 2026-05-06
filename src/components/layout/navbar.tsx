@@ -26,12 +26,12 @@ export function Navbar({ isLoggedIn = false }: NavbarProps) {
             >
               Acasă
             </Link>
-            <Link
+            {/* <Link
               href="/lessons"
               className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
             >
               Lecții
-            </Link>
+            </Link> */}
             <Link
               href="/theory"
               className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors"
@@ -97,12 +97,12 @@ export function Navbar({ isLoggedIn = false }: NavbarProps) {
                   >
                     Acasă
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/lessons"
                     className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                   >
                     Lecții
-                  </Link>
+                  </Link> */}
                   <Link
                     href="/theory"
                     className="text-lg font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
