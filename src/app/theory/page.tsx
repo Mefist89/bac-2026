@@ -203,7 +203,7 @@ export default async function TheoryPage({
       category: "C++",
       categoryColor:
         "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700/50",
-      difficulty: "Mediu" as const,
+      difficulty: "Intermediar" as const,
       difficultyColor:
         "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
       duration: "35 min",
@@ -217,7 +217,7 @@ export default async function TheoryPage({
       category: "C++",
       categoryColor:
         "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700/50",
-      difficulty: "Mediu" as const,
+      difficulty: "Intermediar" as const,
       difficultyColor:
         "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
       duration: "40 min",
@@ -231,7 +231,7 @@ export default async function TheoryPage({
       category: "C++",
       categoryColor:
         "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700/50",
-      difficulty: "Mediu" as const,
+      difficulty: "Intermediar" as const,
       difficultyColor:
         "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
       duration: "35 min",
@@ -259,7 +259,7 @@ export default async function TheoryPage({
       category: "C++",
       categoryColor:
         "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-200 dark:border-indigo-700/50",
-      difficulty: "Mediu" as const,
+      difficulty: "Intermediar" as const,
       difficultyColor:
         "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700/50",
       duration: "40 min",
