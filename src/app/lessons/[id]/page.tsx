@@ -90,6 +90,134 @@ export default async function LessonDetailsPage({ params }: PageProps) {
       level: "Intermediar",
       duration: "30 min",
     };
+  } else if (lessonId === 5) {
+    lessonData = {
+      title: "Instrucțiunea IF",
+      description:
+        "Instrucțiuni decizionale (if, switch) și repetitive (for, while, do-while). Controlul fluxului de execuție.",
+      level: "Începător",
+      duration: "35 min",
+    };
+  } else if (lessonId === 6) {
+    lessonData = {
+      title: "Instrucțiunea SWITCH",
+      description:
+        "Instrucțiunea switch, structură decizională multiplă. Reguli de sintaxă, studii de caz și exemple practice.",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 7) {
+    lessonData = {
+      title: "Operatori și Priorități în C++",
+      description:
+        "Operatori aritmetici, relaționali, logici și la nivel de bit. Regulile de precedență și asociativitate.",
+      level: "Intermediar",
+      duration: "40 min",
+    };
+  } else if (lessonId === 8) {
+    lessonData = {
+      title: "Afișarea informației (iomanip)",
+      description:
+        "Formatarea afișării în C++ folosind biblioteca iomanip: setw, setprecision, scientific, fixed.",
+      level: "Începător",
+      duration: "25 min",
+    };
+  } else if (lessonId === 9) {
+    lessonData = {
+      title: "Instrucțiunea FOR",
+      description:
+        "Structura repetitivă cu număr cunoscut de pași. Sintaxă, exemple de parcurgere și capcane frecvente.",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 10) {
+    lessonData = {
+      title: "Instrucțiunea WHILE",
+      description:
+        "Structura repetitivă cu test inițial. Extragerea cifrelor unui număr, CMMDC, și alte aplicații clasice.",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 11) {
+    lessonData = {
+      title: "Instrucțiunea DO-WHILE",
+      description:
+        "Structura repetitivă cu test final. Execută codul cel puțin o dată. Comparație cu instrucțiunea while.",
+      level: "Începător",
+      duration: "20 min",
+    };
+  } else if (lessonId === 12) {
+    lessonData = {
+      title: "Pre/Post Condiție. Comparație for, while, do-while",
+      description:
+        "Diferența dintre testul inițial și cel final. Analiza și compararea celor 3 tipuri de structuri repetitive.",
+      level: "Începător",
+      duration: "25 min",
+    };
+  } else if (lessonId === 13) {
+    lessonData = {
+      title: "Tablouri Unidimensionale (Vectori)",
+      description:
+        "Declararea, inițializarea, citirea și afișarea unui vector. Indexarea de la zero și capcane frecvente.",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 14) {
+    lessonData = {
+      title: "Tablouri Bidimensionale (Matrice)",
+      description:
+        "Matrice: declarare, parcurgere prin linii și coloane. Diagonala principală și secundară.",
+      level: "Mediu",
+      duration: "35 min",
+    };
+  } else if (lessonId === 15) {
+    lessonData = {
+      title: "Șiruri de Caractere",
+      description:
+        "Reprezentarea textului în C++. Diferența dintre char[] și std::string. Funcții utile din cstring.",
+      level: "Mediu",
+      duration: "40 min",
+    };
+  } else if (lessonId === 16) {
+    lessonData = {
+      title: "Structuri de Date (Tipul Articol / struct)",
+      description:
+        "Definirea tipului struct. Accesarea câmpurilor și operații pe vectori de structuri (util la Subiectul II).",
+      level: "Mediu",
+      duration: "35 min",
+    };
+  } else if (lessonId === 17) {
+    lessonData = {
+      title: "Generalități despre Fișiere (<fstream>)",
+      description:
+        "Citirea și scrierea datelor folosind fișiere text (ifstream, ofstream). Citirea până la EOF.",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 18) {
+    lessonData = {
+      title: "Funcții (Subprograme) și Funcții fără tip (void)",
+      description:
+        "Componentele unei funcții (tip returnat, nume, parametri). Diferența dintre funcțiile cu tip și void.",
+      level: "Mediu",
+      duration: "40 min",
+    };
+  } else if (lessonId === 19) {
+    lessonData = {
+      title: "Sisteme de Numerație. Conversii Baza 2 ↔ Baza 10",
+      description:
+        "Transformarea din binar în zecimal (suma puterilor) și din zecimal în binar (împărțirea repetată).",
+      level: "Începător",
+      duration: "30 min",
+    };
+  } else if (lessonId === 20) {
+    lessonData = {
+      title: "Circuite Logice Elementare. Clasificare",
+      description:
+        "Cele 3 porți logice fundamentale (AND, OR, NOT) și diferența dintre circuitele combinaționale și cele secvențiale.",
+      level: "Începător",
+      duration: "25 min",
+    };
   } else {
     lessonData = {
       title: "Grafuri și Aplicații",
@@ -119,7 +247,7 @@ export default async function LessonDetailsPage({ params }: PageProps) {
             />
             <LessonNavigation
               prevLessonId={lessonId > 1 ? lessonId - 1 : undefined}
-              nextLessonId={lessonId < 4 ? lessonId + 1 : undefined}
+              nextLessonId={lessonId < 20 ? lessonId + 1 : undefined}
             />
             <StatusSelector itemType="lesson" itemId={lessonId} />
           </div>

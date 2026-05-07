@@ -21,15 +21,9 @@ export function LessonHeader({
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
-              <Link href="/lessons" className="hover:text-primary transition">
-                Lecții
+              <Link href="/theory" className="hover:text-primary transition">
+                Teorie
               </Link>
-              <span className="material-icons-outlined text-xs">
-                chevron_right
-              </span>
-              <a href="#" className="hover:text-primary transition">
-                Clasa a X-a
-              </a>
               <span className="material-icons-outlined text-xs">
                 chevron_right
               </span>
